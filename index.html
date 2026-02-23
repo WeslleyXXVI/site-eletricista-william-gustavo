@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eletricista Profissional | Especialista</title>
+    <link rel="stylesheet" href="style.css">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+</head>
+<body>
+
+    <a href="https://wa.me/5511932184544?text=Olá,%20gostaria%20de%20solicitar%20um%20orçamento%20elétrico!" 
+       class="whatsapp-btn" 
+       target="_blank"
+       onclick="gtag('event', 'gerou_contato_whatsapp', {'event_category': 'Conversão', 'event_label': 'Botão Flutuante'});">
+        📞 Chamar no WhatsApp
+    </a>
+
+    <header>
+        <div class="logo">
+            <h2><span class="highlight">⚡</span>Willian Eletricista</h2> 
+        </div>
+        <nav>
+            <a href="#servicos">Serviços</a>
+            <a href="#sobre">Sobre Mim</a>
+            <a href="#formacao">Formação</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Soluções Elétricas Inteligentes e Seguras</h1>
+            <p>Atendimento especializado. Evite riscos, contrate quem entende e segue rigorosamente as normas técnicas.</p>
+            <a href="#contato" class="cta-button">Solicitar Orçamento Agora</a>
+        </div>
+    </section>
+
+    <section id="servicos" class="services">
+        <h2>Meus <span class="highlight">Serviços</span></h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <img src="foto-chuveiro.jpeg" alt="Instalação de Chuveiro">
+                <h3>Instalações Residenciais</h3>
+                <p>Chuveiros, ventiladores de teto, tomadas e iluminação em LED.</p>
+            </div>
+            <div class="service-card">
+                <img src="foto-quadro.jpeg" alt="Quadro de Distribuição">
+                <h3>Quadros de Distribuição</h3>
+                <p>Montagem, balanceamento de fases e instalação de proteção DR/DPS.</p>
+            </div>
+            <div class="service-card">
+                <img src="foto-urgencia.jpeg" alt="Atendimento de Urgência">
+                <h3>Manutenção e Curtos</h3>
+                <p>Identificação rápida de fugas de energia e curtos-circuitos.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="sobre" class="about">
+        <div class="about-content">
+            <img src="foto-perfil.jpeg" alt="Foto do Profissional" class="profile-pic">
+            <div class="about-text">
+                <h2>O Profissional</h2>
+                <p>Com anos de atuação na área, meu foco é entregar um serviço impecável, onde a segurança da sua rede elétrica vem em primeiro lugar. Trabalho com transparência, materiais de qualidade e respeito ao seu ambiente.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="formacao" class="education">
+        <h2>Formação & <span class="highlight">Certificações</span></h2>
+        <div class="education-container">
+            <div class="edu-item">
+                <h3>⚡ Certificação NR-10</h3>
+                <p>Segurança em Instalações e Serviços em Eletricidade. Atualizada e rigorosamente seguida em todos os projetos.</p>
+            </div>
+            <div class="edu-item">
+                <h3>🎓 Eletricista Instalador - SENAI</h3>
+                <p>Formação técnica completa com foco em instalações residenciais e prediais de baixa e média tensão.</p>
+            </div>
+            <div class="edu-item">
+                <h3>🔧 Especialização em Comandos Elétricos</h3>
+                <p>Treinamento avançado para montagem de painéis, automação e sistemas complexos.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="portfolio">
+        <h2>Meus <span class="highlight">Trabalhos</span></h2>
+        <p class="section-subtitle">Confira na prática a qualidade e organização dos serviços executados.</p>
+        
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">Todos</button>
+            <button class="filter-btn" data-filter="foto">Fotos</button>
+            <button class="filter-btn" data-filter="video">Vídeos</button>
+        </div>
+
+        <div class="gallery-grid" id="galleryGrid"></div>
+    </section>
+
+    <div id="lightbox" class="lightbox">
+        <span class="close-lightbox">&times;</span>
+        <div class="lightbox-content" id="lightboxContent"></div>
+    </div>
+
+    <footer>
+        <p>Atendimento em Francisco Morato e Região.</p>
+        <p>CNPJ: 00.000.000/0001-00</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
