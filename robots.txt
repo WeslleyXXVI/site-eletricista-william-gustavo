@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://willian-eletricista.netlify.app/sitemap.xml
