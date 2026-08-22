@@ -5,37 +5,28 @@
 document.addEventListener('DOMContentLoaded', () => {
     
     // ==========================================================================
-    // 1. CANVAS 3D INTERATIVO DE PARTÍCULAS / REDE ELÉTRICA (HERO BACKGROUND)
+    // 1. CANVAS 3D INTERATIVO DE PARTÍCULAS / REDE ELÉTRICA (HERO BACKGROUND - DESKTOP ONLY)
     // ==========================================================================
     const canvas = document.getElementById('hero-canvas');
     if (canvas) {
         const ctx = canvas.getContext('2d');
         let width = canvas.width = window.innerWidth;
         let height = canvas.height = window.innerHeight;
+        let animationId = null;
         
         let mouse = { x: width / 2, y: height / 2, active: false };
-        
-        window.addEventListener('resize', () => {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-        });
+
+        const isDesktop = () => window.innerWidth >= 768;
 
         window.addEventListener('mousemove', (e) => {
+            if (!isDesktop()) return;
             mouse.x = e.clientX;
             mouse.y = e.clientY;
             mouse.active = true;
         });
 
-        window.addEventListener('touchmove', (e) => {
-            if (e.touches.length > 0) {
-                mouse.x = e.touches[0].clientX;
-                mouse.y = e.touches[0].clientY;
-                mouse.active = true;
-            }
-        });
-
         // Configuração dos nós de energia
-        const numParticles = Math.min(width < 768 ? 35 : 70, 80);
+        const numParticles = 65;
         const particles = [];
 
         for (let i = 0; i < numParticles; i++) {
@@ -50,6 +41,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         function animateCanvas() {
+            if (!isDesktop()) {
+                ctx.clearRect(0, 0, width, height);
+                return;
+            }
+
             ctx.clearRect(0, 0, width, height);
 
             // Atualiza e desenha partículas
@@ -83,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
 
-                // Reação com o mouse/toque
+                // Reação com o mouse
                 if (mouse.active) {
                     let mdx = p.x - mouse.x;
                     let mdy = p.y - mouse.y;
@@ -100,36 +96,54 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            requestAnimationFrame(animateCanvas);
+            animationId = requestAnimationFrame(animateCanvas);
         }
 
-        animateCanvas();
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            if (isDesktop()) {
+                if (!animationId) animateCanvas();
+            } else {
+                if (animationId) {
+                    cancelAnimationFrame(animationId);
+                    animationId = null;
+                }
+                ctx.clearRect(0, 0, width, height);
+            }
+        });
+
+        if (isDesktop()) {
+            animateCanvas();
+        }
     }
 
     // ==========================================================================
-    // 2. EFEITO TILT 3D NOS CARDS (PERSPECTIVA INTERATIVA)
+    // 2. EFEITO TILT 3D NOS CARDS (PERSPECTIVA INTERATIVA - APENAS COM MOUSE)
     // ==========================================================================
-    const tiltCards = document.querySelectorAll('.tilt-card-3d');
-    
-    tiltCards.forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-            
-            const rotateX = ((y - centerY) / centerY) * -8; // Máximo 8 graus
-            const rotateY = ((x - centerX) / centerX) * 8;
-            
-            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
-        });
+    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        const tiltCards = document.querySelectorAll('.tilt-card-3d');
+        
+        tiltCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = ((y - centerY) / centerY) * -8; // Máximo 8 graus
+                const rotateY = ((x - centerX) / centerX) * 8;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+            });
 
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
+            });
         });
-    });
+    }
 
     // ==========================================================================
     // 3. GALERIA DE FOTOS E VÍDEOS COM OTIMIZAÇÃO (LAZY LOADING)
