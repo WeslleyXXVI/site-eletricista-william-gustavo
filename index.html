@@ -41,6 +41,12 @@
         content="Eletricista credenciado NR-10 e SENAI em Francisco Morato e Franco da Rocha. Soluções elétricas com nota máxima no Google.">
     <meta property="twitter:image" content="assets/img/foto-perfil.jpeg">
 
+    <!-- Favicon & Icons -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="shortcut icon" href="favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="favicon.png">
+    <meta name="theme-color" content="#FFD700">
+
     <!-- Canonical Link -->
     <link rel="canonical" href="https://willian-eletricista.netlify.app/">
 
@@ -528,8 +534,25 @@
                 <button class="filter-btn" data-filter="video">🎥 Vídeos</button>
             </div>
 
-            <!-- Grid gerado dinamicamente via JS com lazy-loading -->
-            <div class="gallery-grid" id="galleryGrid"></div>
+            <!-- Roleta de Galeria de 6 em 6 com Molduras Eletrizadas -->
+            <div class="roulette-wrapper">
+                <button class="roulette-nav-btn prev-btn" id="galleryPrevBtn" aria-label="Página anterior da galeria" title="Anterior">
+                    <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2.5" fill="none"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                </button>
+                
+                <div class="roulette-viewport" id="galleryViewport">
+                    <div class="gallery-grid roulette-grid" id="galleryGrid"></div>
+                </div>
+
+                <button class="roulette-nav-btn next-btn" id="galleryNextBtn" aria-label="Próxima página da galeria" title="Próximo">
+                    <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2.5" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+            </div>
+
+            <div class="roulette-controls-footer">
+                <div class="roulette-page-info" id="galleryPageInfo">Página <span id="currentPageNum">1</span> de <span id="totalPagesNum">5</span></div>
+                <div class="roulette-indicators" id="galleryIndicators"></div>
+            </div>
         </section>
 
         <!-- Lightbox Modal para fotos e vídeos -->
